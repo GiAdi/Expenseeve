@@ -5,9 +5,10 @@ export const changeTab = (element) => {
     }
 }
 
-export const toggleModal = () => {
+export const toggleModal = (el = null) => {
     return {
-        type: 'toggleModal'
+        type: 'toggleModal',
+        data: el
     }
 }
 
@@ -22,5 +23,19 @@ export const editExpense = (id) => {
     return {
         type: 'editExpense',
         data: id
+    }
+}
+
+export const addExpense = (id) => {
+    return {
+        type: 'addExpense',
+        data: id
+    }
+}
+
+export const handleChange = (change) => {
+    return {
+        type: 'handleChange',
+        data: change
     }
 }

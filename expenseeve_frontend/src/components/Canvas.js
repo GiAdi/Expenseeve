@@ -22,7 +22,7 @@ const Canvas = (props) => {
     }
 
   return (
-    <div class="canvas">
+    <div className="canvas">
         {currentTab}
     </div> 
   );
