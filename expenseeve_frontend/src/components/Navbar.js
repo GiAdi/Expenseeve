@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/navbar.css';
+import { changeTab } from '../redux/actions';
+import { connect } from 'react-redux';
 
 const Navbar = (props) => {
   return (
@@ -17,4 +19,16 @@ const Navbar = (props) => {
   );
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+  return {
+    currentTab: state.currentTab
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeTab: (element) => dispatch(changeTab(element))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
