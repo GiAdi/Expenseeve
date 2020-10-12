@@ -1,4 +1,4 @@
-html, body, .App, #root {
+/* html, body, .App, #root {
   height: 100%
 }
 .App-logo {
@@ -19,4 +19,7 @@ html, body, .App, #root {
 
 .App-link {
   color: #61dafb;
+} */
+.row {
+  padding:20px 0px;
 }

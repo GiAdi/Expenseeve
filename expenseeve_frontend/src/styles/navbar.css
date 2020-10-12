@@ -1,6 +1,6 @@
-.navbar{
-    width: 25%;
-    height : 90%;
+/* .navbar{
+    width: 15%;
+    height : 93%;
     background-color: #5cbabe;
     color: white;
     display: block;
@@ -8,12 +8,32 @@
 }
 
 .navElement{
-    padding: 20px 30px;
-    border-bottom: 1px white solid;
+    padding: 20px;
     cursor: pointer;
-}
-
-.navElement:hover {
+    font-weight: 300 ;
     font-size: 20px;
 }
 
+
+
+.highlighted {
+    font-weight: 600 ;
+    background-color: white ;
+    color: #5cbabe;
+    font-size: 30px;
+}
+ */
+
+ .nav{
+    /* background-color: #5cbabe; */
+    /* color: white; */
+ }
+ .nav-link{
+    font-weight: 350;
+    font-size: 20px;
+ }
+
+ .nav-link:hover {
+    /* font-weight: 350; */
+    font-size: 25px;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
 import store from './redux/store';
 import TitleBar from './components/TitleBar';
 import Navbar from './components/Navbar';
@@ -12,11 +13,15 @@ class App extends React.Component {
     
     return (
       <Provider store = {store}>
-        <div className="App">
-          <TitleBar/>
-          <Navbar/>
-          <Canvas/>
-        </div>
+        <Container fluid>
+          <Row xs={1}>
+            <TitleBar/>
+          </Row>
+          <Row>
+            <Col md={2}><Navbar/></Col>
+            <Col md={10}><Canvas/></Col>
+          </Row>
+        </Container>
       </Provider>
     );
   }

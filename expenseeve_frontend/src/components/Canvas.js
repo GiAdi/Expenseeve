@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/canvas.css';
+import { Row } from 'react-bootstrap'
 import Home from './Home';
 import Settings from './Settings';
 import Profile from './Profile';
@@ -21,9 +22,9 @@ const Canvas = (props) => {
     }
 
   return (
-    <div className="canvas">
+    <React.Fragment>
         {currentTab}
-    </div>
+    </React.Fragment> 
   );
 }
 

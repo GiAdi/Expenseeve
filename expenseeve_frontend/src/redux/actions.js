@@ -4,3 +4,9 @@ export const changeTab = (element) => {
         data: element
     }
 }
+
+export const toggleModal = () => {
+    return {
+        type: 'toggleModal'
+    }
+}

@@ -1,5 +1,6 @@
 const initialState = {
-    currentTab: 'home'
+    currentTab: 'home',
+    isModalOpen: false
 }
 
 const reducer = (state=initialState, action) => {
@@ -7,6 +8,9 @@ const reducer = (state=initialState, action) => {
 
         case 'changeTab':
             return {...state, currentTab: action.data}
+
+        case 'toggleModal':
+            return {...state, isModalOpen: !state.isModalOpen}
 
         default :
             return state;
