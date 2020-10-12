@@ -1,0 +1,18 @@
+.tableBtn{
+    text-align: center;
+    cursor: pointer;
+    width: 40px;
+}
+.edit {
+    color: #007bff;
+    border: 1px dotted #007bff;
+}
+.delete {
+    color: red;
+    border: 1px dotted red;
+}
+.deletedRow {
+    text-decoration: line-through;
+    text-decoration-style: solid;
+    color:red;
+}

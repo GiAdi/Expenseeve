@@ -1,6 +1,7 @@
-/* .canvas {
-    float: right;
+.canvas {
+    /* float: right;
     width: 84%;
-    height: 93%;
-    border: 1px #1b6b6e solid;
-} */
+    height: 93%;*/
+    /* border: 1px #1b6b6e solid;  */
+    padding: 0px 15px;
+}

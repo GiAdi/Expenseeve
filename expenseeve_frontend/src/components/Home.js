@@ -6,6 +6,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import BudgetOverview from './BudgetOverview';
 import CategorySplit from './CategorySplit';
 import AddExpense from './AddExpense';
+import Expenses from './Expenses';
 
 const Home = (props) => {
   return (
@@ -22,6 +23,9 @@ const Home = (props) => {
         <Col xs={12}>
           <Button variant="outline-primary" size="lg" onClick={props.toggleModal}>Add Expense</Button>
         </Col>
+      </Row>
+      <Row>
+        <Expenses/>
       </Row>
       <AddExpense
         show = {props.isModalOpen}

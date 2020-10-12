@@ -22,9 +22,9 @@ const Canvas = (props) => {
     }
 
   return (
-    <React.Fragment>
+    <div class="canvas">
         {currentTab}
-    </React.Fragment> 
+    </div> 
   );
 }
 

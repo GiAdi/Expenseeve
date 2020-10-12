@@ -10,3 +10,17 @@ export const toggleModal = () => {
         type: 'toggleModal'
     }
 }
+
+export const deleteExpense = (id) => {
+    return {
+        type: 'deleteExpense',
+        data: id
+    }
+}
+
+export const editExpense = (id) => {
+    return {
+        type: 'editExpense',
+        data: id
+    }
+}
