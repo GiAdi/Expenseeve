@@ -1,0 +1,19 @@
+.navbar{
+    width: 25%;
+    height : 90%;
+    background-color: #5cbabe;
+    color: white;
+    display: block;
+    float: left;
+}
+
+.navElement{
+    padding: 20px 30px;
+    border-bottom: 1px white solid;
+    cursor: pointer;
+}
+
+.navElement:hover {
+    font-size: 20px;
+}
+

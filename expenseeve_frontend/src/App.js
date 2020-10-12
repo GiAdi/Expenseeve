@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
+import TitleBar from './components/TitleBar';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Settings from './components/Settings';
+import Profile from './components/Profile';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {currentTab: 'profile'};
+
+  changeTab = (newTab) => {
+    this.setState({currentTab : newTab})
+  }
+
+  render() {
+    let currentTab;
+
+    switch(this.state.currentTab) {
+      case 'home':
+        currentTab = <Home/>
+        break;
+      case 'settings':
+        currentTab = <Settings/>
+        break;
+      case 'profile':
+        currentTab = <Profile/>
+        break;
+    }
+
+    return (
+      <div className="App">
+        <TitleBar/>
+        <Navbar changeTab={this.changeTab} />
+        {currentTab}
+      </div>
+    );
+  }
 }
 
 export default App;
