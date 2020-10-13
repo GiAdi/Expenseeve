@@ -13,7 +13,7 @@ app.use('/', routes);
 const mongoose = require('mongoose');
 mongoose.connect(
   'mongodb+srv://m_adi:Chuhiya@01@testcluster.qhma5.mongodb.net/test?retryWrites=true&w=majority',
-  { useNewUrlParser: true, useUnifiedTopology: true  },
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   () => console.log('Connected to db'));
 
 app.listen(port, () => {
