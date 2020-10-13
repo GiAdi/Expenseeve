@@ -57,15 +57,14 @@ const reducer = (state=initialState, action) => {
             return {...state, currentPage: action.data}
 
         case 'deleteCategory': {
-            let categories = [...state.categories];
-            let index = categories.indexOf(action.data);
-            categories.splice(index, 1);
+            let categories = action.data
+            console.log(categories)
             return {...state, categories};
         } 
 
         case 'addCategory': {
-            let categories = [...state.categories];
-            categories.unshift(action.data);
+            let categories = action.data;
+            console.log(categories)
             return {...state, categories};
         }
 

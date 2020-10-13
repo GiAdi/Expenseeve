@@ -40,17 +40,17 @@ export const handlePageClick = (number) => {
     }
 }
 
-export const deleteCategory = (category) => {
+export const deleteCategory = (categories) => {
     return {
         type: 'deleteCategory',
-        data: category
+        data: categories
     }
 }
 
-export const addCategory = (category) => {
+export const addCategory = (categories) => {
     return {
         type: 'addCategory',
-        data: category
+        data: categories
     }
 }
 

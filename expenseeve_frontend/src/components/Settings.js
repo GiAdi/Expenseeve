@@ -9,19 +9,22 @@ const axios = require('axios')
 const Settings = (props) => {
 
   const deleteCategory = async (category) => {
-    const res = await axios.post('http://localhost:4000/deleteCategory', {category});
-    console.log(res)
-    props.deleteCategory(category);
+    await axios.post('http://localhost:4000/deleteCategory', {category});
+    const response = await axios.get('http://localhost:4000/getSettings');
+    console.log(response.data[0].categories)
+    props.deleteCategory(response.data[0].categories);
   }
   const addCategory = async (category) => {
-    const res = await axios.post('http://localhost:4000/addCategory', {category});
-    console.log(res)
-    props.addCategory(category);
+    await axios.post('http://localhost:4000/addCategory', {category});
+    const response = await axios.get('http://localhost:4000/getSettings');
+    console.log(response.data[0].categories)
+    props.addCategory(response.data[0].categories);
   }
   const updateBudget = async (budget) => {
-    const res = await axios.post('http://localhost:4000/updateBudget', {budget});
-    console.log(res)
-    props.updateBudget(budget);
+    await axios.post('http://localhost:4000/updateBudget', {budget});
+    const response = await axios.get('http://localhost:4000/getSettings');
+    console.log(response.data[0].budget)
+    props.updateBudget(response.data[0].budget);
   }
 
   let categories = [...props.categories];
@@ -111,8 +114,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteCategory: (category) => dispatch(deleteCategory(category)),
-    addCategory: (category) => dispatch(addCategory(category)),
+    deleteCategory: (categories) => dispatch(deleteCategory(categories)),
+    addCategory: (categories) => dispatch(addCategory(categories)),
     updateBudget: (budget) => dispatch(updateBudget(budget))
   }
 }
