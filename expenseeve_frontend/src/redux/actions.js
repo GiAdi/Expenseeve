@@ -19,13 +19,6 @@ export const deleteExpense = (id) => {
     }
 }
 
-export const editExpense = (id) => {
-    return {
-        type: 'editExpense',
-        data: id
-    }
-}
-
 export const addExpense = () => {
     return {
         type: 'addExpense',
@@ -43,5 +36,26 @@ export const handlePageClick = (number) => {
     return {
         type: 'handlePageClick',
         data: number
+    }
+}
+
+export const deleteCategory = (category) => {
+    return {
+        type: 'deleteCategory',
+        data: category
+    }
+}
+
+export const addCategory = (category) => {
+    return {
+        type: 'addCategory',
+        data: category
+    }
+}
+
+export const updateBudget = (budget) => {
+    return {
+        type: 'updateBudget',
+        data: budget
     }
 }

@@ -2,18 +2,17 @@ import React from 'react';
 import '../styles/expenses.css';
 import { connect } from 'react-redux';
 import { Table, Pagination } from 'react-bootstrap'
-import { deleteExpense, editExpense, toggleModal, handlePageClick } from '../redux/actions'
+import { deleteExpense, toggleModal, handlePageClick } from '../redux/actions'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ReplayIcon from '@material-ui/icons/Replay';
 
 const Expenses = (props) => {
 
-    let itemsPerPage = 7;
+    let itemsPerPage = 6;
     let active = props.currentPage;
     let expenses = props.expenses;
     let totalRecords = expenses.length;
-    console.log(active)
 
     // FOR PAGINATION
     let totalPages = Math.ceil(totalRecords / itemsPerPage);
@@ -30,7 +29,9 @@ const Expenses = (props) => {
     let start = ((active-1)*itemsPerPage);
     let end = start + itemsPerPage;
     let expenseRows = [];
+    let names=[];
     for (let i = start; i<end && i<totalRecords; i++) {
+        names.push(expenses[i].name)
         expenseRows.push(
             <tr key={expenses[i].id} id={expenses[i].id} className={expenses[i].deleted === 'true' ? 'deletedRow' : ''}>
                 <td className="tableBtn edit" onClick={() => props.toggleModal(expenses[i])}>
@@ -48,6 +49,7 @@ const Expenses = (props) => {
         )
     }
 
+    console.log(expenses,names, expenseRows)
 
     return (
         <React.Fragment>
@@ -82,7 +84,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         deleteExpense: (id) => dispatch(deleteExpense(id)),
-        editExpense: (id) => dispatch(editExpense(id)),
         toggleModal: (el) => dispatch(toggleModal(el)),
         handlePageClick: (number) => dispatch(handlePageClick(number))
     }

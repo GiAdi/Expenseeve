@@ -1,5 +1,5 @@
 const initialState = {
-    currentTab: 'home',
+    currentTab: 'settings',
     isModalOpen: false,
     expenses: [
         { id: 3, name: 'Third', category: 'Leisure', amount: 30, date: '2020-10-03', deleted: 'false'},
@@ -14,18 +14,20 @@ const initialState = {
         { id: 9, name: 'Third', category: 'Leisure', amount: 30, date: '2020-10-03', deleted: 'false'},
         { id: 10, name: 'Fourth', category: 'Others', amount: 30, date: '2020-10-04', deleted: 'false'},
     ],
+    categories: ["Groceries", "Commuting", "Leisure", "Bills", "Others"],
     modalValues: null,
-    currentPage: 1
+    currentPage: 1,
+    budget: 15000
 }
 
 const reducer = (state=initialState, action) => {
     switch(action.type) {
-
         case 'changeTab':
             return {...state, currentTab: action.data}
 
         case 'toggleModal': {
             let values = state.isModalOpen ? null : action.data;
+            console.log(values)
             return {...state, isModalOpen: !state.isModalOpen, modalValues: values}
         }
 
@@ -33,7 +35,6 @@ const reducer = (state=initialState, action) => {
             let expenses = [...state.expenses];
             let deletedItem = expenses.find( el => el.id===action.data );
             deletedItem.deleted = deletedItem.deleted === 'true' ? 'false' : 'true';
-            // expenses.splice(index,1);
             return {...state, expenses}
         }
 
@@ -46,12 +47,30 @@ const reducer = (state=initialState, action) => {
         case 'handlePageClick':       
             return {...state, currentPage: action.data}
 
+        case 'deleteCategory': {
+            let categories = [...state.categories];
+            let index = categories.indexOf(action.data);
+            categories.splice(index, 1);
+            return {...state, categories};
+        } 
+
+        case 'addCategory': {
+            let categories = [...state.categories];
+            categories.unshift(action.data);
+            return {...state, categories};
+        }
+
+        case 'updateBudget': {
+            return {...state, budget: action.data};
+        }   
+
         case 'addExpense': {
             if ( state.modalValues === null )
                 return {...state, isModalOpen: false};
 
             let expenses = [...state.expenses];
             let modalValues = state.modalValues;
+            let currentPage = state.currentPage;
 
                 if( Object.keys(modalValues).includes('id') ) {
                     let index = expenses.findIndex( ( el ) => el.id===modalValues.id );
@@ -61,10 +80,11 @@ const reducer = (state=initialState, action) => {
                     let newItem = {...modalValues};
                     newItem.id = 99;
                     newItem.deleted = 'false';
-                    expenses.unshift(newItem);
+                    expenses.push(newItem);
+                    currentPage = 1;
                 }
 
-            return {...state, expenses, isModalOpen: false, modalValues: null}
+            return {...state, expenses, isModalOpen: false, modalValues: null, currentPage}
             }
 
         default :

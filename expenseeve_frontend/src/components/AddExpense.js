@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 
 const AddExpense = (props) => {
 
+    let categories = [...props.categories];
+    let categoryOptions = categories.map( el => <option>{el}</option> )
+
     return (
         <Modal
             {...props}
@@ -16,22 +19,18 @@ const AddExpense = (props) => {
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Expense Details
-          </Modal.Title>
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form onChange={(event)=>props.handleChange(event.target)}>
+                <Form onChange={(event) => props.handleChange(event.target)}>
                     <Form.Row>
                         <Col xs={9}>
-                            <Form.Control name="name" placeholder="Item Name" value={props.modalValues ? props.modalValues.name : ''}/>
+                            <Form.Control name="name" placeholder="Item Name" value={props.modalValues ? props.modalValues.name : ''} />
                         </Col>
                         <Col xs={3}>
                             <Form.Control name="category" placeholder="Category" as="select" value={props.modalValues ? props.modalValues.category : ''}>
                                 <option>Select Category</option>
-                                <option>Groceries</option>
-                                <option>Commuting</option>
-                                <option>Bills</option>
-                                <option>Leisure</option>
-                                <option>Others</option>
+                                {categoryOptions}
                             </Form.Control>
                         </Col>
                     </Form.Row>
@@ -41,11 +40,11 @@ const AddExpense = (props) => {
                                 <InputGroup.Prepend>
                                     <InputGroup.Text>₹</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <Form.Control name="amount" placeholder="Amount" type="number" value={props.modalValues ? props.modalValues.amount : ''}/>
+                                <Form.Control name="amount" placeholder="Amount" type="number" value={props.modalValues ? props.modalValues.amount : ''} />
                             </InputGroup>
                         </Col>
                         <Col>
-                            <Form.Control name="date" placeholder="Expense Date" type="date" value={props.modalValues ? props.modalValues.date : ''}/>
+                            <Form.Control name="date" placeholder="Expense Date" type="date" value={props.modalValues ? props.modalValues.date : ''} />
                         </Col>
                     </Form.Row>
                 </Form>
@@ -59,7 +58,7 @@ const AddExpense = (props) => {
 }
 
 const mapStateToProps = state => {
-    return {modalValues: state.modalValues}
+    return { modalValues: state.modalValues, categories: state.categories }
 }
 
 const mapDispatchToProps = dispatch => {
