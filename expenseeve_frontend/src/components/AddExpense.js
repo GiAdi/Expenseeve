@@ -11,12 +11,11 @@ const AddExpense = (props) => {
     const addExpense = async () => {
         await axios.post('http://localhost:4000/addExpense', props.modalValues);
         let response = await axios.get('http://localhost:4000/getExpenses');
-        console.log(response.data)
         props.addExpense(response.data);
     }
 
     let categories = [...props.categories];
-    let categoryOptions = categories.map(el => <option>{el}</option>)
+    let categoryOptions = categories.map( (el, index) => <option key={index}>{el}</option>)
 
     return (
         <Modal

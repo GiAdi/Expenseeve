@@ -14,11 +14,10 @@ const Expenses = (props) => {
     const deleteExpense = async (id) => {
         await axios.post('http://localhost:4000/softDeleteExpense', {id});
         let response = await axios.get('http://localhost:4000/getExpenses');
-        console.log(response)
         props.deleteExpense(response.data);
     }
 
-    let itemsPerPage = 6;
+    let itemsPerPage = 7;
     let active = props.currentPage;
     let expenses = props.expenses;
     let totalRecords = expenses.length;
@@ -38,9 +37,12 @@ const Expenses = (props) => {
     let start = ((active-1)*itemsPerPage);
     let end = start + itemsPerPage;
     let expenseRows = [];
-    let names=[];
     for (let i = start; i<end && i<totalRecords; i++) {
-        names.push(expenses[i].name)
+        let date = expenses[i].date;
+        let dateString = ``;
+        dateString += date.slice(8,10) + '-';
+        dateString += date.slice(5,7) + '-';
+        dateString += date.slice(0,4);
         expenseRows.push(
             <tr key={expenses[i].id} id={expenses[i].id} className={expenses[i].deleted === 'true' ? 'deletedRow' : ''}>
                 <td className="tableBtn edit" onClick={() => props.toggleModal(expenses[i])}>
@@ -50,7 +52,7 @@ const Expenses = (props) => {
                 <td>{expenses[i].name}</td>
                 <td>{expenses[i].category}</td>
                 <td>{expenses[i].amount}</td>
-                <td>{expenses[i].date}</td>
+                <td>{dateString}</td>
                 <td className="tableBtn delete" onClick={() => deleteExpense(expenses[i].id)}>
                     {expenses[i].deleted === 'true' ? <ReplayIcon style={{ color: '#28a745' }} /> : <DeleteOutlineIcon />}
                 </td>

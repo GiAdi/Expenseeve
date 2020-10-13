@@ -11,19 +11,16 @@ const Settings = (props) => {
   const deleteCategory = async (category) => {
     await axios.post('http://localhost:4000/deleteCategory', {category});
     const response = await axios.get('http://localhost:4000/getSettings');
-    console.log(response.data[0].categories)
     props.deleteCategory(response.data[0].categories);
   }
   const addCategory = async (category) => {
     await axios.post('http://localhost:4000/addCategory', {category});
     const response = await axios.get('http://localhost:4000/getSettings');
-    console.log(response.data[0].categories)
     props.addCategory(response.data[0].categories);
   }
   const updateBudget = async (budget) => {
     await axios.post('http://localhost:4000/updateBudget', {budget});
     const response = await axios.get('http://localhost:4000/getSettings');
-    console.log(response.data[0].budget)
     props.updateBudget(response.data[0].budget);
   }
 
