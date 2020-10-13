@@ -39,3 +39,11 @@ export const handleChange = (change) => {
         data: change
     }
 }
+
+export const handlePageClick = (number) => {
+    console.log(number)
+    return {
+        type: 'handlePageClick',
+        data: number
+    }
+}

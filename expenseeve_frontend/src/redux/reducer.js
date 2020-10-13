@@ -2,16 +2,24 @@ const initialState = {
     currentTab: 'home',
     isModalOpen: false,
     expenses: [
-        { id: 1, name: 'First', category: 'Groceries', amount: 10, date: '2020-10-01', deleted: 'true'},
-        { id: 2, name: 'Second', category: 'Bills', amount: 20, date: '2020-10-02', deleted: 'false'},
         { id: 3, name: 'Third', category: 'Leisure', amount: 30, date: '2020-10-03', deleted: 'false'},
+        { id: 1, name: 'First', category: 'Groceries', amount: 10, date: '2020-10-01', deleted: 'true'},
         { id: 4, name: 'Fourth', category: 'Others', amount: 30, date: '2020-10-04', deleted: 'false'},
-        { id: 5, name: 'Fifth', category: 'Commuting', amount: 50, date: '2020-10-05', deleted: 'false'}
+        { id: 7, name: 'Fourth', category: 'Others', amount: 30, date: '2020-10-04', deleted: 'false'},
+        { id: 2, name: 'Second', category: 'Bills', amount: 20, date: '2020-10-02', deleted: 'false'},
+        { id: 5, name: 'Fifth', category: 'Commuting', amount: 50, date: '2020-10-05', deleted: 'false'},
+        { id: 8, name: 'Fifth', category: 'Commuting', amount: 50, date: '2020-10-05', deleted: 'false'},
+        { id: 6, name: 'Third', category: 'Leisure', amount: 30, date: '2020-10-03', deleted: 'false'},
+        { id: 11, name: 'Fifth', category: 'Commuting', amount: 50, date: '2020-10-05', deleted: 'false'},
+        { id: 9, name: 'Third', category: 'Leisure', amount: 30, date: '2020-10-03', deleted: 'false'},
+        { id: 10, name: 'Fourth', category: 'Others', amount: 30, date: '2020-10-04', deleted: 'false'},
     ],
-    modalValues: null
+    modalValues: null,
+    currentPage: 1
 }
 
 const reducer = (state=initialState, action) => {
+    console.log(action)
     switch(action.type) {
 
         case 'changeTab':
@@ -32,6 +40,10 @@ const reducer = (state=initialState, action) => {
             let modalValues = state.modalValues ? {...state.modalValues} : {};
             modalValues[action.data.name] = action.data.value;           
             return {...state, modalValues}
+
+        case 'handlePageClick': 
+            console.log(action)         
+            return {...state, currentPage: action.data}
 
         // case 'addExpense':
             // let expenses = [...state.expenses];
