@@ -5,10 +5,10 @@ const Expense = require('./models/expenses');
 
 router.use(express.json())
 
-router.all('/*', (req, res, next) => {
-    console.log("yesy", req.body);
-    next();
-})
+// router.all('/*', (req, res, next) => {
+//     console.log(req.body);
+//     next();
+// })
 
 router.post('/createUser', async (req, res) => {
     const newSetting = new Setting ({
@@ -90,7 +90,8 @@ router.post('/addExpense', async (req, res) => {
         name: req.body.name,
         amount: req.body.amount,
         date: req.body.date,
-        deleted: req.body.deleted
+        deleted: req.body.deleted,
+        category: req.body.category
     });
     
     try {

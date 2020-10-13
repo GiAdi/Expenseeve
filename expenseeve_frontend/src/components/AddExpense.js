@@ -12,6 +12,7 @@ const AddExpense = (props) => {
         await axios.post('http://localhost:4000/addExpense', props.modalValues);
         let response = await axios.get('http://localhost:4000/getExpenses');
         props.addExpense(response.data);
+
     }
 
     let categories = [...props.categories];

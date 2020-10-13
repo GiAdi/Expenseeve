@@ -17,7 +17,7 @@ const Expenses = (props) => {
         props.deleteExpense(response.data);
     }
 
-    let itemsPerPage = 7;
+    let itemsPerPage = 5;
     let active = props.currentPage;
     let expenses = props.expenses;
     let totalRecords = expenses.length;

@@ -9,7 +9,6 @@ import AddExpense from './AddExpense';
 import Expenses from './Expenses';
 
 const Home = (props) => {
-
   return (
     <React.Fragment>
       <Row>
@@ -20,9 +19,10 @@ const Home = (props) => {
           <CategorySplit />
         </Col>
       </Row>
+      <br/>
       <Row>
         <Col xs={12}>
-          <Button variant="outline-primary" size="lg" onClick={props.toggleModal}>Add Expense</Button>
+          <Button variant="outline-primary" size="sm" block onClick={props.toggleModal}>Add Expense</Button>
         </Col>
       </Row>
       <Row>
