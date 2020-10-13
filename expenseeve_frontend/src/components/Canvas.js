@@ -6,20 +6,20 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 
 const Canvas = (props) => {
-    let currentTab;
 
+    let currentTab;
     switch(props.currentTab) {
         case 'home':
-            currentTab = <Home/>
+            currentTab = <Home />
             break;
         case 'settings':
-            currentTab = <Settings/>
+            currentTab = <Settings />
             break;
         case 'profile':
             currentTab = <Profile/>
             break;
         default:
-            currentTab = <Home/>
+            currentTab = <Home />
             break;
     }
 

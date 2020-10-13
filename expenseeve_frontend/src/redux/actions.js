@@ -12,16 +12,17 @@ export const toggleModal = (el = null) => {
     }
 }
 
-export const deleteExpense = (id) => {
+export const deleteExpense = (data) => {
     return {
         type: 'deleteExpense',
-        data: id
+        data: data
     }
 }
 
-export const addExpense = () => {
+export const addExpense = (data) => {
     return {
         type: 'addExpense',
+        data: data
     }
 }
 
@@ -57,5 +58,19 @@ export const updateBudget = (budget) => {
     return {
         type: 'updateBudget',
         data: budget
+    }
+}
+
+export const getExpenses = (data) => {
+    return {
+        type: 'getExpenses',
+        data: data
+    }
+}
+
+export const getSettings = (data) => {
+    return {
+        type: 'getSettings',
+        data: data
     }
 }

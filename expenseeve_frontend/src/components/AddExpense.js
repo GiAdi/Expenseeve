@@ -9,30 +9,10 @@ const axios = require('axios');
 const AddExpense = (props) => {
 
     const addExpense = async () => {
-        const res = await axios.post('http://localhost:4000/addExpense', props.modalValues);
-        console.log(res)
-
-        // if (props.modalValues === null)
-        //     return { ...props, isModalOpen: false };
-
-        // let expenses = [...props.expenses];
-        // let modalValues = props.modalValues;
-        // // let currentPage = props.currentPage;
-
-        // if (Object.keys(modalValues).includes('id')) {
-        //     let index = expenses.findIndex((el) => el.id === modalValues.id);
-        //     expenses[index] = { ...expenses[index], ...modalValues };
-        // }
-        // else {
-        //     let newItem = { ...modalValues };
-        //     newItem.id = 99;
-        //     newItem.deleted = 'false';
-        //     expenses.push(newItem);
-        //     currentPage = 1;
-        // }
-        // const res = await axios.post('http://localhost:4000/addExpense', {budget});
-        // console.log(res)
-        props.addExpense();
+        await axios.post('http://localhost:4000/addExpense', props.modalValues);
+        let response = await axios.get('http://localhost:4000/getExpenses');
+        console.log(response.data)
+        props.addExpense(response.data);
     }
 
     let categories = [...props.categories];
@@ -92,7 +72,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addExpense: () => dispatch(addExpense()),
+        addExpense: (data) => dispatch(addExpense(data)),
         handleChange: (change) => dispatch(handleChange(change))
     }
 }

@@ -35,6 +35,16 @@ router.get('/getExpenses', async (req, res) => {
     }
 })
 
+router.get('/getSettings', async (req, res) => {
+    try {
+        const settings = await Setting.find();
+        res.json(settings);
+    }
+    catch (err) {
+        res.json({ message: err })
+    }
+})
+
 router.post('/updateBudget', async (req, res) => {
     try { 
         const savedSettings = await Setting.updateOne(
@@ -108,7 +118,7 @@ router.post('/addExpense', async (req, res) => {
     }
 })
 
-router.post ('/deleteexpense', async (req, res) => {
+router.post ('/deleteExpense', async (req, res) => {
     const id = req.body.id;
     try {
         const deletedExpense = await Expense.deleteOne({id: id});
@@ -117,7 +127,19 @@ router.post ('/deleteexpense', async (req, res) => {
     catch (err) {
         res.json({message: err});
     }
+})
 
+router.post ('/softDeleteExpense', async (req, res) => {
+    const id = req.body.id;
+    try {
+        const find = await Expense.findOne({id: id});
+        const deleted = find.deleted === 'true' ? 'false' : 'true'
+        const deletedExpense = await Expense.updateOne({id: id}, {deleted:deleted});
+        res.json(deletedExpense);
+    }
+    catch (err) {
+        res.json({message: err});
+    }
 })
 
 router.get('/', (req, res) => {

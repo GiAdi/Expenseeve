@@ -9,6 +9,7 @@ import AddExpense from './AddExpense';
 import Expenses from './Expenses';
 
 const Home = (props) => {
+
   return (
     <React.Fragment>
       <Row>

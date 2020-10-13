@@ -7,10 +7,15 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ReplayIcon from '@material-ui/icons/Replay';
 
+const axios = require('axios');
+
 const Expenses = (props) => {
 
-    const deleteExpense = (id) => {
-        props.deleteExpense(id);
+    const deleteExpense = async (id) => {
+        await axios.post('http://localhost:4000/softDeleteExpense', {id});
+        let response = await axios.get('http://localhost:4000/getExpenses');
+        console.log(response)
+        props.deleteExpense(response.data);
     }
 
     let itemsPerPage = 6;
@@ -85,7 +90,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteExpense: (id) => dispatch(deleteExpense(id)),
+        deleteExpense: (data) => dispatch(deleteExpense(data)),
         toggleModal: (el) => dispatch(toggleModal(el)),
         handlePageClick: (number) => dispatch(handlePageClick(number))
     }
