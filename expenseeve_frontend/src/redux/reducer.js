@@ -19,38 +19,53 @@ const initialState = {
 }
 
 const reducer = (state=initialState, action) => {
-    console.log(action)
     switch(action.type) {
 
         case 'changeTab':
             return {...state, currentTab: action.data}
 
-        case 'toggleModal':
+        case 'toggleModal': {
             let values = state.isModalOpen ? null : action.data;
             return {...state, isModalOpen: !state.isModalOpen, modalValues: values}
+        }
 
-        case 'deleteExpense':
+        case 'deleteExpense': {
             let expenses = [...state.expenses];
             let deletedItem = expenses.find( el => el.id===action.data );
             deletedItem.deleted = deletedItem.deleted === 'true' ? 'false' : 'true';
             // expenses.splice(index,1);
             return {...state, expenses}
+        }
 
-        case 'handleChange':
+        case 'handleChange': {
             let modalValues = state.modalValues ? {...state.modalValues} : {};
             modalValues[action.data.name] = action.data.value;           
             return {...state, modalValues}
+        }
 
-        case 'handlePageClick': 
-            console.log(action)         
+        case 'handlePageClick':       
             return {...state, currentPage: action.data}
 
-        // case 'addExpense':
-            // let expenses = [...state.expenses];
-            // let deletedItem = expenses.find( el => el.id===action.data );
-            // deletedItem.deleted = deletedItem.deleted === 'true' ? 'false' : 'true';
-            // // expenses.splice(index,1);
-            // return {...state, expenses}
+        case 'addExpense': {
+            if ( state.modalValues === null )
+                return {...state, isModalOpen: false};
+
+            let expenses = [...state.expenses];
+            let modalValues = state.modalValues;
+
+                if( Object.keys(modalValues).includes('id') ) {
+                    let index = expenses.findIndex( ( el ) => el.id===modalValues.id );
+                    expenses[index] = {...expenses[index], ...modalValues};
+                }
+                else {
+                    let newItem = {...modalValues};
+                    newItem.id = 99;
+                    newItem.deleted = 'false';
+                    expenses.unshift(newItem);
+                }
+
+            return {...state, expenses, isModalOpen: false, modalValues: null}
+            }
 
         default :
             return state;

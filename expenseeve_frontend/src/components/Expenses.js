@@ -42,7 +42,7 @@ const Expenses = (props) => {
                 <td>{expenses[i].amount}</td>
                 <td>{expenses[i].date}</td>
                 <td className="tableBtn delete" onClick={() => props.deleteExpense(expenses[i].id)}>
-                    {expenses[i].deleted === 'true' ? <ReplayIcon style={{ color: '#3fd36cfa' }} /> : <DeleteOutlineIcon />}
+                    {expenses[i].deleted === 'true' ? <ReplayIcon style={{ color: '#28a745' }} /> : <DeleteOutlineIcon />}
                 </td>
             </tr>
         )

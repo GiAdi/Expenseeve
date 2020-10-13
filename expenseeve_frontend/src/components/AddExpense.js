@@ -51,7 +51,8 @@ const AddExpense = (props) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
+                <Button variant="outline-danger" onClick={props.onHide}>Close</Button>
+                <Button variant="success" onClick={props.addExpense}>Save</Button>
             </Modal.Footer>
         </Modal>
     );

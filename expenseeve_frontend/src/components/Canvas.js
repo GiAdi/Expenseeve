@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/canvas.css';
-import { Row } from 'react-bootstrap'
 import Home from './Home';
 import Settings from './Settings';
 import Profile from './Profile';
@@ -10,15 +9,18 @@ const Canvas = (props) => {
     let currentTab;
 
     switch(props.currentTab) {
-      case 'home':
-        currentTab = <Home/>
-        break;
-      case 'settings':
-        currentTab = <Settings/>
-        break;
-      case 'profile':
-        currentTab = <Profile/>
-        break;
+        case 'home':
+            currentTab = <Home/>
+            break;
+        case 'settings':
+            currentTab = <Settings/>
+            break;
+        case 'profile':
+            currentTab = <Profile/>
+            break;
+        default:
+            currentTab = <Home/>
+            break;
     }
 
   return (

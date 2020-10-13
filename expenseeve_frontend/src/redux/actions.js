@@ -26,10 +26,9 @@ export const editExpense = (id) => {
     }
 }
 
-export const addExpense = (id) => {
+export const addExpense = () => {
     return {
         type: 'addExpense',
-        data: id
     }
 }
 
@@ -41,7 +40,6 @@ export const handleChange = (change) => {
 }
 
 export const handlePageClick = (number) => {
-    console.log(number)
     return {
         type: 'handlePageClick',
         data: number
