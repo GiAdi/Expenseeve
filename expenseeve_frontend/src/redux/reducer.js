@@ -27,7 +27,6 @@ const reducer = (state=initialState, action) => {
 
         case 'toggleModal': {
             let values = state.isModalOpen ? null : action.data;
-            console.log(values)
             return {...state, isModalOpen: !state.isModalOpen, modalValues: values}
         }
 

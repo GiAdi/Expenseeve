@@ -9,6 +9,10 @@ import ReplayIcon from '@material-ui/icons/Replay';
 
 const Expenses = (props) => {
 
+    const deleteExpense = (id) => {
+        props.deleteExpense(id);
+    }
+
     let itemsPerPage = 6;
     let active = props.currentPage;
     let expenses = props.expenses;
@@ -42,14 +46,12 @@ const Expenses = (props) => {
                 <td>{expenses[i].category}</td>
                 <td>{expenses[i].amount}</td>
                 <td>{expenses[i].date}</td>
-                <td className="tableBtn delete" onClick={() => props.deleteExpense(expenses[i].id)}>
+                <td className="tableBtn delete" onClick={() => deleteExpense(expenses[i].id)}>
                     {expenses[i].deleted === 'true' ? <ReplayIcon style={{ color: '#28a745' }} /> : <DeleteOutlineIcon />}
                 </td>
             </tr>
         )
     }
-
-    console.log(expenses,names, expenseRows)
 
     return (
         <React.Fragment>

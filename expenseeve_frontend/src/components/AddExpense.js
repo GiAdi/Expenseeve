@@ -4,10 +4,39 @@ import { Modal, Button, Form, Col, InputGroup } from 'react-bootstrap';
 import { addExpense, handleChange } from '../redux/actions'
 import { connect } from 'react-redux';
 
+const axios = require('axios');
+
 const AddExpense = (props) => {
 
+    const addExpense = async () => {
+        const res = await axios.post('http://localhost:4000/addExpense', props.modalValues);
+        console.log(res)
+
+        // if (props.modalValues === null)
+        //     return { ...props, isModalOpen: false };
+
+        // let expenses = [...props.expenses];
+        // let modalValues = props.modalValues;
+        // // let currentPage = props.currentPage;
+
+        // if (Object.keys(modalValues).includes('id')) {
+        //     let index = expenses.findIndex((el) => el.id === modalValues.id);
+        //     expenses[index] = { ...expenses[index], ...modalValues };
+        // }
+        // else {
+        //     let newItem = { ...modalValues };
+        //     newItem.id = 99;
+        //     newItem.deleted = 'false';
+        //     expenses.push(newItem);
+        //     currentPage = 1;
+        // }
+        // const res = await axios.post('http://localhost:4000/addExpense', {budget});
+        // console.log(res)
+        props.addExpense();
+    }
+
     let categories = [...props.categories];
-    let categoryOptions = categories.map( el => <option>{el}</option> )
+    let categoryOptions = categories.map(el => <option>{el}</option>)
 
     return (
         <Modal
@@ -51,7 +80,7 @@ const AddExpense = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="outline-danger" onClick={props.onHide}>Close</Button>
-                <Button variant="success" onClick={props.addExpense}>Save</Button>
+                <Button variant="success" onClick={addExpense}>Save</Button>
             </Modal.Footer>
         </Modal>
     );
