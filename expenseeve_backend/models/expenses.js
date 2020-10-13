@@ -6,8 +6,14 @@ const expensesSchema = mongoose.Schema({
         required: true,
         index: {unique: true}
     },  
-    name: String,
-    amount: Number,
+    name: {
+        type: String,
+        default: 'Unnamed Expense'
+    },
+    amount: {
+        type: Number,
+        default: 0
+    },
     date: {
         type: Date,
         default: Date.now
@@ -16,7 +22,10 @@ const expensesSchema = mongoose.Schema({
         type: String,
         default: 'false'
     },
-    category: String
+    category: {
+        type: String,
+        default: 'Others'
+    }
 })
 
 module.exports = mongoose.model('Expenses', expensesSchema);

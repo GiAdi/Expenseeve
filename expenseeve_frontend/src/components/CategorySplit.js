@@ -20,7 +20,7 @@ const CategorySplit = (props) => {
 
     categories.forEach(_ => categoryObj[_] = 0);
 
-    expenses.forEach( expense => { if(expense.category) categoryObj[expense.category] += expense.amount });
+    expenses.forEach( expense => { if(expense.category && expense.deleted==='false') categoryObj[expense.category] += expense.amount });
 
     Object.entries(categoryObj).forEach( entry => series.push( { name: entry[0], data: [entry[1]] } ) );
 
